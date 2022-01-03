@@ -58,13 +58,17 @@ process_directory(GMenuTreeDirectory *dir)
 		case GMENU_TREE_ITEM_INVALID:
 			goto out;
 		case GMENU_TREE_ITEM_ENTRY:
-			GMenuTreeEntry *entry = gmenu_tree_iter_get_entry(iter);
-			process_entry(entry);
+			{
+				GMenuTreeEntry *entry = gmenu_tree_iter_get_entry(iter);
+				process_entry(entry);
+			}
 			break;
 		case GMENU_TREE_ITEM_DIRECTORY:
-			GMenuTreeDirectory *dir =
-				gmenu_tree_iter_get_directory(iter);
-			process_directory(dir);
+			{
+				GMenuTreeDirectory *dir =
+					gmenu_tree_iter_get_directory(iter);
+				process_directory(dir);
+			}
 		default:
 			break;
 		}
