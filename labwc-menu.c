@@ -20,7 +20,11 @@ process_entry(GMenuTreeEntry *entry)
 	}
 
 	GString *name = g_string_new(g_app_info_get_name(G_APP_INFO(info)));
+#if GLIB_CHECK_VERSION(2, 68, 0)
 	g_string_replace(name, "&", "&amp;", 0);
+#else
+	#warning GLIB version < 2.68.0. Run sed -i 's/&/&amp;/g' on resulting menu.xml file
+#endif
 
 	/*
 	 * g_app_info_get_executable() appears not to return any % fields, so
