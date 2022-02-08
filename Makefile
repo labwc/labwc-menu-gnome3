@@ -14,7 +14,8 @@ labwc-menu-cinnamon: CFLAGS += -DGMENU_I_KNOW_THIS_IS_UNSTABLE
 labwc-menu-cinnamon: CFLAGS += `pkg-config --cflags libcinnamon-menu-3.0`
 labwc-menu-cinnamon: LDFLAGS += `pkg-config --libs libcinnamon-menu-3.0`
 labwc-menu-cinnamon.c:
-	cp labwc-menu.c labwc-menu-cinnamon.c
+	sed 's/gnome-menus-3.0/cinnamon-menus-3.0/' labwc-menu.c > labwc-menu-cinnamon.c
+	sed -i 's/GDesktopAppInfo/GMenuDesktopAppInfo/' labwc-menu-cinnamon.c
 
 labwc-menu-mate: labwc-menu-mate.o
 labwc-menu-mate: CFLAGS += -DMATEMENU_I_KNOW_THIS_IS_UNSTABLE
